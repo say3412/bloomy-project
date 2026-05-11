@@ -51,9 +51,11 @@ export function SideNav(): React.JSX.Element {
       }}
     >
       <Stack spacing={2} sx={{ p: 3 }}>
-        <Box component={RouterLink} href={paths.home} sx={{ display: 'inline-flex' }}>
-          <Logo color="light" height={32} width={122} />
-        </Box>
+        <RouterLink href={paths.home}>
+          <Box sx={{ display: 'inline-flex' }}>
+            <Logo color="light" height={32} width={122} />
+          </Box>
+        </RouterLink>
         <Box
           sx={{
             alignItems: 'center',
