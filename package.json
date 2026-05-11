@@ -7,6 +7,7 @@
   "private": false,
   "scripts": {
     "analyze": "ANALYZE=true next build --webpack",
+    "analyze:licenses": "node check-licenses.js",
     "build": "next build",
     "dev": "next dev",
     "format:check": "prettier --check \"**/*.{js,jsx,mjs,ts,tsx,mdx}\" --cache",
@@ -64,6 +65,7 @@
     "globals": "16.2.0",
     "jest": "30.0.0",
     "jest-environment-jsdom": "30.0.0",
+    "license-report": "^6.8.2",
     "prettier": "3.5.3",
     "typescript": "5.8.3",
     "typescript-eslint": "8.34.0"
