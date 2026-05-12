@@ -91,7 +91,7 @@ export function MobileNav({ open, onClose }: MobileNavProps): React.JSX.Element 
       </Box>
       <Divider sx={{ borderColor: 'var(--mui-palette-neutral-700)' }} />
       <Stack spacing={2} sx={{ p: '12px' }}>
-        <div>
+        {/* <div>
           <Typography color="var(--mui-palette-neutral-100)" variant="subtitle2">
             Need more features?
           </Typography>
@@ -117,7 +117,7 @@ export function MobileNav({ open, onClose }: MobileNavProps): React.JSX.Element 
           variant="contained"
         >
           Pro version
-        </Button>
+        </Button> */}
       </Stack>
     </Drawer>
   );
