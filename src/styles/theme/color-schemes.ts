@@ -34,9 +34,9 @@ export const colorSchemes = {
       },
       neutral: { ...nevada },
       primary: {
-        light: '#e9d5ff',
-        main: '#a855f7',
-        dark: '#7c3aed',
+        light: '#fdeef5',
+        main: '#eda9c4',
+        dark: '#e07aaa',
         contrastText: 'var(--mui-palette-common-white)',
       },
       secondary: {
@@ -98,9 +98,9 @@ export const colorSchemes = {
       },
       neutral: { ...stormGrey },
       primary: {
-        light: '#ede9fe',
-        main: '#a855f7',
-        dark: '#7c3aed',
+        light: '#fdf2f8',
+        main: '#ea88b0',
+        dark: '#d96f9a',
         contrastText: 'var(--mui-palette-common-white)',
       },
       secondary: {

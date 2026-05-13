@@ -7,6 +7,6 @@ export interface Config {
 }
 
 export const config: Config = {
-  site: { name: 'Devias Kit', description: '', themeColor: '#5C5470', url: getSiteURL() },
+  site: { name: 'Devias Kit', description: '', themeColor: '#ea88b0', url: getSiteURL() },
   logLevel: (process.env.NEXT_PUBLIC_LOG_LEVEL as keyof typeof LogLevel) ?? LogLevel.ALL,
 };
