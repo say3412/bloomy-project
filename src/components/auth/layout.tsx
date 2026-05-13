@@ -37,7 +37,7 @@ export function Layout({ children }: LayoutProps): React.JSX.Element {
         sx={{
           alignItems: 'center',
           background:
-            'radial-gradient(60% 60% at 50% 50%, var(--mui-palette-secondary-main) 0%, var(--mui-palette-primary-main) 45%, var(--mui-palette-info-main) 100%)',
+            'radial-gradient(82% 82% at 50% 36%, #ffffff 0%, #ffffff 72%, #fdfdfd 90%, var(--mui-palette-primary-light) 100%)',
           color: 'var(--mui-palette-common-black)',
           display: { xs: 'none', lg: 'flex' },
           justifyContent: 'center',
@@ -48,7 +48,7 @@ export function Layout({ children }: LayoutProps): React.JSX.Element {
           <Stack spacing={1}>
             <Typography color="inherit" sx={{ fontSize: '24px', lineHeight: '32px', textAlign: 'center' }} variant="h1">
               Welcome to{' '}
-              <Box component="span" sx={{ color: 'var(--mui-palette-info-dark)' }}>
+              <Box component="span" sx={{ color: 'var(--mui-palette-primary-dark)' }}>
                 Devias Kit
               </Box>
             </Typography>

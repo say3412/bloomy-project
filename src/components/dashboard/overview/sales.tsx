@@ -51,7 +51,7 @@ function useChartOptions(): ApexOptions {
 
   return {
     chart: { background: 'transparent', stacked: false, toolbar: { show: false } },
-    colors: [theme.palette.primary.dark, alpha(theme.palette.primary.main, 0.45)],
+    colors: [theme.palette.primary.dark, alpha(theme.palette.primary.main, 0.38)],
     dataLabels: { enabled: false },
     fill: { opacity: 1, type: 'solid' },
     grid: {

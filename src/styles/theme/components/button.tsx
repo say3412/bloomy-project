@@ -5,7 +5,7 @@ import type { Theme } from '../types';
 export const MuiButton = {
   styleOverrides: {
     root: { borderRadius: '12px', textTransform: 'none' },
-    containedPrimary: { color: 'var(--mui-palette-common-white)', fontWeight: 700 },
+    containedPrimary: { color: 'var(--mui-palette-primary-contrastText)', fontWeight: 700 },
     sizeSmall: { padding: '6px 16px' },
     sizeMedium: { padding: '8px 20px' },
     sizeLarge: { padding: '11px 24px' },

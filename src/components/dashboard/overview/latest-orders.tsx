@@ -21,22 +21,22 @@ const statusMap = {
   pending: {
     label: 'Pending',
     sx: {
-      backgroundColor: 'var(--mui-palette-warning-main)',
-      color: 'var(--mui-palette-warning-contrastText)',
+      backgroundColor: 'var(--mui-palette-primary-light)',
+      color: 'var(--mui-palette-text-primary)',
     },
   },
   delivered: {
     label: 'Delivered',
     sx: {
-      backgroundColor: 'var(--mui-palette-secondary-dark)',
-      color: 'var(--mui-palette-common-white)',
+      backgroundColor: 'var(--mui-palette-primary-main)',
+      color: 'var(--mui-palette-primary-contrastText)',
     },
   },
   refunded: {
     label: 'Refunded',
     sx: {
-      backgroundColor: 'var(--mui-palette-error-main)',
-      color: 'var(--mui-palette-error-contrastText)',
+      backgroundColor: 'var(--mui-palette-neutral-600)',
+      color: 'var(--mui-palette-common-white)',
     },
   },
 } as const;
