@@ -25,16 +25,16 @@ export function SideNav(): React.JSX.Element {
   return (
     <Box
       sx={{
-        '--SideNav-background': 'var(--mui-palette-neutral-950)',
+        '--SideNav-background': '#342d4d',
         '--SideNav-color': 'var(--mui-palette-common-white)',
-        '--NavItem-color': 'var(--mui-palette-neutral-300)',
-        '--NavItem-hover-background': 'rgba(255, 255, 255, 0.04)',
+        '--NavItem-color': 'var(--mui-palette-neutral-100)',
+        '--NavItem-hover-background': 'rgba(255, 255, 255, 0.08)',
         '--NavItem-active-background': 'var(--mui-palette-primary-main)',
         '--NavItem-active-color': 'var(--mui-palette-primary-contrastText)',
-        '--NavItem-disabled-color': 'var(--mui-palette-neutral-500)',
-        '--NavItem-icon-color': 'var(--mui-palette-neutral-400)',
+        '--NavItem-disabled-color': 'var(--mui-palette-neutral-400)',
+        '--NavItem-icon-color': 'var(--mui-palette-neutral-200)',
         '--NavItem-icon-active-color': 'var(--mui-palette-primary-contrastText)',
-        '--NavItem-icon-disabled-color': 'var(--mui-palette-neutral-600)',
+        '--NavItem-icon-disabled-color': 'var(--mui-palette-neutral-500)',
         bgcolor: 'var(--SideNav-background)',
         color: 'var(--SideNav-color)',
         display: { xs: 'none', lg: 'flex' },
@@ -59,8 +59,8 @@ export function SideNav(): React.JSX.Element {
         <Box
           sx={{
             alignItems: 'center',
-            backgroundColor: 'var(--mui-palette-neutral-950)',
-            border: '1px solid var(--mui-palette-neutral-700)',
+            backgroundColor: 'rgba(255, 255, 255, 0.06)',
+            border: '1px solid rgba(255, 255, 255, 0.14)',
             borderRadius: '12px',
             cursor: 'pointer',
             display: 'flex',
@@ -68,7 +68,7 @@ export function SideNav(): React.JSX.Element {
           }}
         >
           <Box sx={{ flex: '1 1 auto' }}>
-            <Typography color="var(--mui-palette-neutral-400)" variant="body2">
+            <Typography color="var(--mui-palette-neutral-200)" variant="body2">
               Workspace
             </Typography>
             <Typography color="inherit" variant="subtitle1">
@@ -78,11 +78,11 @@ export function SideNav(): React.JSX.Element {
           <CaretUpDownIcon />
         </Box>
       </Stack>
-      <Divider sx={{ borderColor: 'var(--mui-palette-neutral-700)' }} />
+      <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.12)' }} />
       <Box component="nav" sx={{ flex: '1 1 auto', p: '12px' }}>
         {renderNavItems({ pathname, items: navItems })}
       </Box>
-      <Divider sx={{ borderColor: 'var(--mui-palette-neutral-700)' }} />
+      <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.12)' }} />
       <Stack spacing={2} sx={{ p: '12px' }}>
         {/* <div>
           <Typography color="var(--mui-palette-neutral-100)" variant="subtitle2">

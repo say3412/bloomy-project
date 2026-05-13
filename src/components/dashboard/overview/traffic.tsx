@@ -60,13 +60,13 @@ function useChartOptions(labels: string[]): ApexOptions {
 
   return {
     chart: { background: 'transparent' },
-    colors: [theme.palette.primary.main, theme.palette.success.main, theme.palette.warning.main],
+    colors: [theme.palette.primary.main, theme.palette.secondary.main, theme.palette.warning.main],
     dataLabels: { enabled: false },
     labels,
     legend: { show: false },
     plotOptions: { pie: { expandOnClick: false } },
     states: { active: { filter: { type: 'none' } }, hover: { filter: { type: 'none' } } },
-    stroke: { width: 0 },
+    stroke: { colors: [theme.palette.background.paper], width: 4 },
     theme: { mode: theme.palette.mode },
     tooltip: { fillSeriesColor: false },
   };

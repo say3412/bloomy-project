@@ -18,9 +18,27 @@ import { ArrowRightIcon } from '@phosphor-icons/react/dist/ssr/ArrowRight';
 import dayjs from 'dayjs';
 
 const statusMap = {
-  pending: { label: 'Pending', color: 'warning' },
-  delivered: { label: 'Delivered', color: 'success' },
-  refunded: { label: 'Refunded', color: 'error' },
+  pending: {
+    label: 'Pending',
+    sx: {
+      backgroundColor: 'var(--mui-palette-warning-main)',
+      color: 'var(--mui-palette-warning-contrastText)',
+    },
+  },
+  delivered: {
+    label: 'Delivered',
+    sx: {
+      backgroundColor: 'var(--mui-palette-secondary-dark)',
+      color: 'var(--mui-palette-common-white)',
+    },
+  },
+  refunded: {
+    label: 'Refunded',
+    sx: {
+      backgroundColor: 'var(--mui-palette-error-main)',
+      color: 'var(--mui-palette-error-contrastText)',
+    },
+  },
 } as const;
 
 export interface Order {
@@ -53,7 +71,10 @@ export function LatestOrders({ orders = [], sx }: LatestOrdersProps): React.JSX.
           </TableHead>
           <TableBody>
             {orders.map((order) => {
-              const { label, color } = statusMap[order.status] ?? { label: 'Unknown', color: 'default' };
+              const { label, sx: chipSx } = statusMap[order.status] ?? {
+                label: 'Unknown',
+                sx: { backgroundColor: 'var(--mui-palette-neutral-200)', color: 'var(--mui-palette-text-primary)' },
+              };
 
               return (
                 <TableRow hover key={order.id}>
@@ -62,10 +83,10 @@ export function LatestOrders({ orders = [], sx }: LatestOrdersProps): React.JSX.
                   <TableCell>{dayjs(order.createdAt).format('MMM D, YYYY')}</TableCell>
                   <TableCell>
                     <Chip
-                      color={color}
                       label={label}
                       onClick={() => {}}
                       size="small"
+                      sx={chipSx}
                       variant="filled"
                     />
                   </TableCell>
