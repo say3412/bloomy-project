@@ -1,5 +1,5 @@
 {
-  "name": "material-kit-react",
+  "name": "boolmy-project",
   "version": "4.1.0",
   "author": "Devias",
   "licence": "MIT",
@@ -8,8 +8,8 @@
   "scripts": {
     "analyze": "ANALYZE=true next build --webpack",
     "analyze:licenses": "node check-licenses.js",
-    "build": "next build",
-    "dev": "next dev",
+    "build": "next build --webpack",
+    "dev": "next dev --webpack",
     "format:check": "prettier --check \"**/*.{js,jsx,mjs,ts,tsx,mdx}\" --cache",
     "format:write": "prettier --write \"**/*.{js,jsx,mjs,ts,tsx,mdx}\" --cache",
     "lint": "next lint",
