@@ -26,3 +26,146 @@ html {
 body {
   height: 100%;
 }
+
+/* --- Bloomy 전용 고퀄리티 달력 스타일 --- */
+
+/* 1. 기본 구조 & 폰트 */
+.fc {
+  --fc-border-color: #f1f1f4; /* divider 컬러 */
+  font-family: inherit;
+  background: #ffffff;
+  border-radius: 24px;
+  border: none !important;
+}
+
+/* 2. 상단 네비게이션 버튼 */
+.fc .fc-button {
+  background-color: transparent !important;
+  border: none !important;
+  color: #313749 !important; /* text.primary */
+  font-weight: 700 !important;
+  box-shadow: none !important;
+}
+
+/* Today 버튼: Primary Light 활용 */
+.fc .fc-today-button {
+  background-color: #FFF0F6 !important; /* primary.light */
+  color: #E47BA6 !important; /* primary.main */
+  border-radius: 10px !important;
+  padding: 8px 16px !important;
+  margin-right: 12px !important;
+  text-transform: capitalize;
+}
+
+.fc .fc-today-button:disabled {
+  opacity: 0.6;
+}
+
+/* < > 버튼 원형 처리 */
+.fc .fc-button-group .fc-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fc .fc-button-group .fc-button:hover {
+  background-color: #faf5fc !important; /* secondary.light */
+}
+
+/* 3. 타이틀 & 요일 헤더 */
+.fc-toolbar-title {
+  font-size: 1.3rem !important;
+  font-weight: 800 !important;
+  color: #19191B;
+  letter-spacing: -0.02em;
+}
+
+.fc-col-header-cell-cushion {
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  color: #8E8E93 !important;
+  text-decoration: none !important;
+  padding: 12px 0 !important;
+}
+
+/* 4. 날짜 숫자 & 오늘 하이라이트 */
+.fc .fc-daygrid-day-number {
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 12px !important;
+  color: #494F66;
+  text-decoration: none !important;
+}
+
+/* 오늘 날짜: 깔끔하게 원형 포인트 */
+.fc .fc-day-today {
+  background-color: transparent !important;
+}
+
+/* 오늘 날짜: 다른 날짜와 맞춰 오른쪽 정렬 */
+.fc .fc-day-today .fc-daygrid-day-number {
+  color: #ffffff !important;
+  background-color: #E47BA6; /* primary.main */
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  
+  /* 마진 수정: 위쪽 6px, 오른쪽 6px, 아래 0, 왼쪽 auto로 설정하여 오른쪽 배치 */
+  margin: 6px 6px 0 auto !important; 
+  padding: 0 !important;
+}
+
+/* (추가 팁) 날짜 숫자가 칸의 너무 끝에 붙어 보인다면 
+   전체 날짜 정렬을 위한 컨테이너 조절 */
+.fc-daygrid-day-top {
+  flex-direction: row !important; 
+  justify-content: flex-end !important;
+}
+
+/* 5. 기타 그리드 정리 */
+.fc-theme-standard td, .fc-theme-standard th {
+  border: 1px solid #f2f2f7 !important;
+}
+
+.fc-scrollgrid {
+  border: none !important;
+}
+
+/* 1. 툴바를 상대 위치로 설정 */
+.fc-header-toolbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between; /* 양 끝 정렬 */
+  align-items: center;
+}
+
+/* 2. 타이틀(center) 영역을 절대 위치로 정중앙 배치 */
+.fc .fc-toolbar-chunk:nth-child(2) {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* 클릭 방해 금지 */
+}
+
+.fc-toolbar-title {
+  pointer-events: auto; /* 타이틀 자체는 선택 가능하게 */
+  margin: 0 !important; /* 불필요한 마진 제거 */
+  font-size: 1.3rem !important;
+  font-weight: 800 !important;
+  color: #19191B;
+  letter-spacing: -0.02em;
+}
+
+/* 3. 모바일에서 겹침 방지 (선택 사항) */
+@media (max-width: 600px) {
+  .fc-toolbar-title {
+    font-size: 1.1rem !important;
+  }
+}

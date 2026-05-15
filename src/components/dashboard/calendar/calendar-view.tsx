@@ -44,31 +44,71 @@ export default function CalendarPage() {
   }));
 
   const events = [
+    ...todoEvents.map(e => ({ ...e, extendedProps: { type: 'todo' } })),
     ...habbitEvents.map(e => ({ ...e, extendedProps: { type: 'habbit' } })),
-    ...todoEvents.map(e => ({ ...e, extendedProps: { type: 'todo' } }))
   ];
 
   return (
     <FullCalendar
       plugins={[dayGridPlugin]}
       initialView="dayGridMonth"
+      headerToolbar={{
+        left: 'prev,next today',
+        center: 'title',
+        right: ''
+      }}
+      buttonText={{ today: 'Today' }}
+      buttonIcons={{ prev: 'chevron-left', next: 'chevron-right' }}
       height="auto"
       fixedWeekCount={false}
       dayMaxEventRows={true}
       events={events}
       eventBackgroundColor="transparent"
       eventBorderColor="transparent"
-
       eventContent={(eventInfo) => {
-        const type = eventInfo.event.extendedProps.type;
-        const isHabbit = type === 'habbit';
+        const isHabbit = eventInfo.event.extendedProps.type === 'habbit';
+
+        // 새 팔레트 적용: Primary(Habbit) & Secondary(Todo)
+        const themeColor = isHabbit ? {
+          bg: 'rgba(228, 123, 166, 0.12)', // primary.main의 투명 버전
+          text: '#E47BA6',                 // primary.main
+          border: '#E47BA6'
+        } : {
+          bg: 'rgba(216, 180, 226, 0.15)', // secondary.main의 투명 버전
+          text: '#B189BE',                 // secondary.dark (가독성을 위해 한 톤 낮춤)
+          border: '#D8B4E2'                // secondary.main
+        };
 
         return (
-          <div
-            className={styles.count}
-            style={{ backgroundColor: isHabbit ? "#ea88b0" : "#9088ea" }}
-          >
-            {eventInfo.event.title}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            padding: '3px 8px',
+            margin: '1px 2px',
+            borderRadius: '6px',
+            backgroundColor: themeColor.bg,
+            borderLeft: `3px solid ${themeColor.border}`,
+            transition: 'all 0.2s ease',
+          }}>
+            <span style={{
+              fontSize: '0.65rem',
+              fontWeight: '800',
+              color: themeColor.text,
+              opacity: 0.8
+            }}>
+              {isHabbit ? 'H' : 'T'}
+            </span>
+            <span style={{
+              fontSize: '0.75rem',
+              fontWeight: '600',
+              color: '#313749', // 팔레트의 text.primary
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis'
+            }}>
+              {eventInfo.event.title}
+            </span>
           </div>
         );
       }}

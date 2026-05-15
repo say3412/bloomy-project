@@ -57,24 +57,32 @@ export default function Page() {
     <Box
       sx={{
         minHeight: '100vh',
-        // backgroundImage: 'url()',
-        // backgroundSize: 'cover',
-        // backgroundPosition: 'center',
-        // backgroundRepeat: 'no-repeat',
       }}
     >
       <Stack spacing={5} sx={{ maxWidth: 840, mx: 'auto', paddingTop: '50px' }}>
-        <Stack spacing={1}>
-          <Typography variant="h3" sx={{ fontWeight: 600 }}>
-            나를 피워내는 가장 쉬운 방법,
+        <Stack spacing={1.5} sx={{ alignItems: 'center' }}>
+          <Typography variant="h4" sx={{ fontWeight: 600 }}>
+            내가 피어나는 가장 쉬운 방법,
           </Typography>
-          <Typography variant="h2" sx={{ fontWeight: 600 }}>
-            지금 Bloomy와 시작하세요.
-          </Typography>
+          <Typography variant="h2" sx={{ fontWeight: 600, color: 'text.primary' }}>
+  지금{' '}
+  <Box
+    component="span"
+    sx={{
+      fontFamily: '"Cascadia Mono", "Cascadia Code", monospace',
+      fontWeight: 600, // Semibold (600)
+      color: 'primary.main', // 설정한 #e47ba6 색상 적용
+      mx: 0.5, // 좌우 미세한 간격 조정
+    }}
+  >
+    Bloomy
+  </Box>
+  와 시작하세요.
+</Typography>
         </Stack>
 
         {/* Suggestion + Contents */}
-        <Stack spacing={2.5}>
+        <Stack spacing={9}>
           <Stack id="contents" direction={{ xs: 'column', sm: 'row' }} spacing={2}>
             <Card
               elevation={0}
@@ -92,7 +100,7 @@ export default function Page() {
               <CardContent sx={{ p: 3 }}>
                 <Fade in={visible} timeout={500}>
                   <Stack spacing={1.5}>
-                    <Typography sx={{ fontWeight: 700, fontSize: '0.95rem', textAlign: 'center', }}>
+                    <Typography sx={{ fontWeight: 700, fontSize: '1rem', textAlign: 'center', }}>
                       &ldquo;{wisesay.message}&rdquo;
                       {/* &ldquo;{quotes[quoteIndex].text}&rdquo; */}
                     </Typography>
@@ -106,32 +114,38 @@ export default function Page() {
             </Card>
           </Stack>
           {/* 버튼 */}
-          <Stack sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }} spacing={1}>
-            <CardActions sx={{ gap: '30px' }}>
-              <Button sx={{
-                width: '100px',
-                borderRadius: '24px',
-                background: '#ea88b0',
-                color: '#fff',
-                textShadow: '0 1px 4px rgba(0,0,0,0.1)',
+          <Stack direction="column" spacing={2} sx={{ width: '100%', alignItems: 'center' }}>
+            <Button
+              variant="contained"
+              disableElevation
+              sx={{
+                width: '100%',
+                maxWidth: '280px',
+                py: 1.8,
+                borderRadius: '100px', // 완전 곡선으로 세련미 강조
+                bgcolor: 'var(--mui-palette-primary-main)', // 블랙 버튼으로 핑크의 가벼움을 잡아줌
+                color: '#FFFFFF',
                 fontSize: '1rem',
-                fontWeight: '600',
-              }}>
-                회원가입
-              </Button>
-              <Button sx={{
-                width: '100px',
-                borderRadius: '24px',
-                // background: 'linear-gradient(135deg, #ea88b0, #f8bfd4)',
-                background: '#ea88b0',
-                color: '#fff',
-                textShadow: '0 1px 4px rgba(0,0,0,0.1)',
-                fontSize: '1rem',
-                fontWeight: '600',
-              }} >
-                로그인
-              </Button>
-            </CardActions>
+                fontWeight: 600,
+                textTransform: 'none',
+                '&:hover': { bgcolor: 'var(--mui-palette-primary-dark)', }
+              }}
+            >
+              Get Started
+            </Button>
+            <Button
+              variant="text"
+              sx={{
+                color: '#8E8E93',
+                fontWeight: 500,
+                fontSize: '0.9rem',
+                textDecoration: 'underline',
+                textUnderlineOffset: '4px',
+                '&:hover': { color: '#19191B', bgcolor: 'transparent' }
+              }}
+            >
+              이미 계정이 있으신가요? 로그인
+            </Button>
           </Stack>
         </Stack>
       </Stack >

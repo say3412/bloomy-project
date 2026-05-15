@@ -58,8 +58,8 @@ export function VisionList({ visions = [], sx }: VisionListStatusProps): React.J
 
     <Card sx={sx}>
       <CardHeader
-        title="Top 10 Vision"
-        subheader="10개의 목표를 적어주세요."
+        title="Vision Writing"
+        subheader="이미 이룬 것처럼 완료형으로 적어주세요."
         slotProps={{
           title: {
             sx: {

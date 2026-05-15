@@ -12,6 +12,8 @@ import Checkbox from '@mui/material/Checkbox';
 import { ADD_BUTTON_ID } from '@/config'
 import useVisionboardImageContext from '@/hooks/useVisionboardImageContext';
 import Alert from '@mui/material/Alert';
+import { Paper, Stack, Typography } from '@mui/material';
+import AddIcon from '@mui/icons-material/AddOutlined';
 
 interface VisionBoardMasonryProps {
   images: VisionBoardImage[];
@@ -28,8 +30,6 @@ export default function VisionBoardMasonry({ images, readOnly = true }: VisionBo
   const onClickMake = () => {
     handleAddOpen();
   }
-
-  const displayImages = editBoard ? [...images, { id: ADD_BUTTON_ID, src: '/assets/logo_text.png', }] : images;
 
   return (
     <div>
@@ -54,7 +54,7 @@ export default function VisionBoardMasonry({ images, readOnly = true }: VisionBo
             bgcolor: "#fafafa",
           }}
         >
-          {displayImages.length === 0 &&
+          {images.length === 0 &&
             (<Box
               sx={{
                 width: '100%',
@@ -71,8 +71,14 @@ export default function VisionBoardMasonry({ images, readOnly = true }: VisionBo
             </Box>
             )}
 
-          {displayImages.length > 0 && <Masonry columns={4} spacing={2}>
-            {displayImages.map((img) => (
+          {images.length > 0 && <Masonry columns={4} spacing={2} sx={{
+            // Masonry 내부 아이템들의 위치 이동 애니메이션 제거
+            '& > *': {
+              transition: 'none !important',
+              animation: 'none !important',
+            }
+          }}>
+            {images.map((img) => (
               <Box
                 key={img.id}
                 sx={{
@@ -86,16 +92,6 @@ export default function VisionBoardMasonry({ images, readOnly = true }: VisionBo
                   size="small"
                   sx={{
                     padding: '4px', position: 'absolute', top: 8, right: 8, zIndex: 1, backgroundColor: 'rgba(0,0,0,0.5)', color: 'white',
-                    '&:hover': { backgroundColor: 'rgba(0,0,0,0.7)', },
-                  }}
-                >
-                  <CloseIcon sx={{ fontSize: 16 }} />
-                </IconButton>}
-
-                {!addBoard && editBoard && img.id === ADD_BUTTON_ID && <IconButton
-                  onClick={handleAddOpen}
-                  sx={{
-                    position: 'absolute', top: 50, right: 50, zIndex: 1, backgroundColor: 'rgba(0,0,0,0.5)', color: 'white',
                     '&:hover': { backgroundColor: 'rgba(0,0,0,0.7)', },
                   }}
                 >
@@ -121,6 +117,58 @@ export default function VisionBoardMasonry({ images, readOnly = true }: VisionBo
                 />
               </Box>
             ))}
+            {!addBoard && editBoard && <Paper
+              elevation={0}
+              onClick={handleAddOpen}
+              sx={{
+                width: '100%',
+                height: '120px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '16px', // 기존 이미지 카드와 곡률 통일
+                border: '1.5px dashed',
+                borderColor: 'rgba(228, 123, 166, 0.4)', // Primary Main(#E47BA6)의 옅은 버전
+                bgcolor: 'rgba(255, 240, 246, 0.5)', // Primary Light(#FFF0F6)의 투명 버전
+                cursor: 'pointer',
+                transition: 'all 0.2s ease-in-out',
+                '&:hover': {
+                  bgcolor: '#FFF0F6',
+                  borderColor: '#E47BA6',
+                  transform: 'scale(1.02)', // 아주 미세한 확대 효과로 인터랙션 강화
+                  boxShadow: '0 8px 16px rgba(228, 123, 166, 0.1)'
+                }
+              }}
+            >
+              <Stack spacing={0.8} alignItems="center">
+                {/* 아이콘을 원형 배경 안에 넣어 포인트 부여 */}
+                <Box
+                  sx={{
+                    width: 36,
+                    height: 36,
+                    borderRadius: '50%',
+                    bgcolor: '#E47BA6',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    boxShadow: '0 4px 10px rgba(228, 123, 166, 0.3)'
+                  }}
+                >
+                  <AddIcon sx={{ color: '#fff', fontSize: '1.2rem' }} />
+                </Box>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    fontWeight: 700,
+                    color: '#E47BA6',
+                    fontSize: '0.75rem',
+                    letterSpacing: '-0.01em'
+                  }}
+                >
+                  Add Moment
+                </Typography>
+              </Stack>
+            </Paper>}
           </Masonry>}
         </Box>
       </Card>

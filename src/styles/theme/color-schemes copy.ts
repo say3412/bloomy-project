@@ -90,56 +90,30 @@ export const colorSchemes = {
         dark: redOrange[600],
         contrastText: 'var(--mui-palette-common-white)',
       },
-      // info: {
-      //   light: '#f3f0fa',
-      //   main: '#c4b8dc',
-      //   dark: '#9d8fc0',
-      //   contrastText: 'var(--mui-palette-common-white)',
-      // },
-      // neutral: { ...stormGrey },
-      // primary: {
-      //   light: '#FFF0F6',
-      //   main: '#e47ba6',
-      //   dark: '#B3507A',
-      //   contrastText: 'var(--mui-palette-common-white)',
-      // },
-      // secondary: {
-      //   light: '#faf5fc',
-      //   main: '#f3e5f5',
-      //   dark: '#dcc6e2',
-      //   contrastText: 'var(--mui-palette-common-black)',
-      // },
-      // success: {
-      //   ...neonBlue,
-      //   light: '#fff1f2',
-      //   main: '#fbcfe8',
-      //   dark: '#f9a8d4',
-      //   contrastText: 'var(--mui-palette-neutral-800)',
-      // },
       info: {
-        light: '#efebf7', // 아주 연한 퍼플 화이트
-        main: '#b1a2d4', // 기존보다 선명해진 정보 색상
-        dark: '#8576ab', // 텍스트 가독성 확보
+        light: '#f3f0fa',
+        main: '#c4b8dc',
+        dark: '#9d8fc0',
         contrastText: 'var(--mui-palette-common-white)',
       },
       neutral: { ...stormGrey },
       primary: {
-        light: '#FFF0F6',
-        main: '#e47ba6',
-        dark: '#B3507A',
+        light: '#fdf2f8',
+        main: '#ea88b0',
+        dark: '#d96f9a',
         contrastText: 'var(--mui-palette-common-white)',
       },
       secondary: {
-        light: '#f6edfa', // 배경으로 쓰기 좋은 연보라
-        main: '#d8b4e2', // 존재감이 확실해진 라벤더 (Secondary)
-        dark: '#b189be', // 버튼 호버나 강조용
-        contrastText: 'var(--mui-palette-common-white)', // 톤이 진해졌으므로 화이트 텍스트 추천
+        light: '#faf5fc',
+        main: '#f3e5f5',
+        dark: '#dcc6e2',
+        contrastText: 'var(--mui-palette-common-black)',
       },
       success: {
-        // 메인 핑크와 구분하기 위해 약간의 오렌지/피치 톤을 섞은 소프트 코랄 제안
-        light: '#fff5f5',
-        main: '#ffcfd1', 
-        dark: '#f0a4a8',
+        ...neonBlue,
+        light: '#fff1f2',
+        main: '#fbcfe8',
+        dark: '#f9a8d4',
         contrastText: 'var(--mui-palette-neutral-800)',
       },
       text: {
