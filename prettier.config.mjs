@@ -6,7 +6,7 @@ const config = {
 	singleQuote: false,
 	tabWidth: 2,
 	trailingComma: "es5",
-	useTabs: true,
+	useTabs: false,
 	importOrder: [
 		"^node:$",
 		"",

@@ -2,128 +2,128 @@
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import Card from '@mui/material/Card';
+import Button from '@mui/material/Button';
+import CardActions from '@mui/material/CardActions';
+import EventNoteIcon from '@mui/icons-material/EventNote';
 import { Masonry } from '@mui/lab';
-import { Box } from "@mui/material";
+import { Box, Snackbar } from "@mui/material";
 import { type VisionBoardImage } from '@/types/visionboard-image';
 import Checkbox from '@mui/material/Checkbox';
 import { ADD_BUTTON_ID } from '@/config'
 import useVisionboardImageContext from '@/hooks/useVisionboardImageContext';
-import { useState } from 'react';
+import Alert from '@mui/material/Alert';
+
 
 interface VBMasonryProps {
-    images: VisionBoardImage[];
+  images: VisionBoardImage[];
 }
 
 export default function VisionBoardMasonry({ images }: VBMasonryProps) {
-    const { addBoard, editBoard, handleDelete, handleAddOpen } = useVisionboardImageContext();
-    const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const { openAlert, selectedIds, addBoard, editBoard, handleDelete, handleAddOpen, handleSelectIds, handleAlert } = useVisionboardImageContext();
 
-    const handleSelect = (id: number) => {
-        setSelectedIds((prev) =>
-            prev.includes(id)
-                ? prev.filter((item) => item !== id)
-                : [...prev, id]
-        );
-    };
+  const handleSelect = (id: number) => {
+    handleSelectIds(id);
+  };
 
-    const displayImages = editBoard ? [...images, { id: ADD_BUTTON_ID, src: '/assets/logo_text.png', }] : images;
+  const onClickMake = () => {
+    handleAddOpen();
+  }
 
-    return (
-        <Card>
-            <Box
-                sx={{
-                    maxHeight: '70vh',
-                    overflowY: "auto",
-                    px: 2,
-                    pt: 2,
-                    pb: 10,
-                    bgcolor: "#fafafa",
-                }}
+  const displayImages = editBoard ? [...images, { id: ADD_BUTTON_ID, src: '/assets/logo_text.png', }] : images;
+
+  return (
+    <div>
+      <Snackbar
+        open={openAlert}
+        autoHideDuration={1500}
+        onClose={handleAlert}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}>
+        <Alert severity="warning" >이미 비전보드에 포함된 이미지입니다.</Alert>
+      </Snackbar>
+      <Card>
+        <Box
+          sx={{
+            maxHeight: '70vh',
+            overflowY: "auto",
+            px: 2,
+            pt: 2,
+            pb: 5,
+            bgcolor: "#fafafa",
+          }}
+        >
+          {displayImages.length === 0 &&
+            (<Box
+              sx={{
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
             >
-                <Masonry columns={4} spacing={2}>
-                    {displayImages.map((img) => (
-                        <Box
-                            key={img.id}
-                            sx={{
-                                position: 'relative',
-                                overflow: "hidden",
-                                borderRadius: 1.5,
-                            }}
-                        >
-                            {!addBoard && editBoard && img.id !== ADD_BUTTON_ID && <IconButton
-                                onClick={() => handleDelete(img.id)}
-                                size="small"
-                                sx={{
-                                    padding: '4px',
-                                    position: 'absolute',
-                                    top: 8,
-                                    right: 8,
-                                    zIndex: 1,
-                                    backgroundColor: 'rgba(0,0,0,0.5)',
-                                    color: 'white',
-                                    '&:hover': {
-                                        backgroundColor: 'rgba(0,0,0,0.7)',
-                                    },
-                                }}
-                            >
-                                <CloseIcon sx={{ fontSize: 16 }} />
-                            </IconButton>}
-
-                            {!addBoard && editBoard && img.id === ADD_BUTTON_ID && <IconButton
-                                onClick={handleAddOpen}
-                                sx={{
-                                    position: 'absolute',
-                                    top: 50,
-                                    right: 50,
-                                    zIndex: 1,
-                                    backgroundColor: 'rgba(0,0,0,0.5)',
-                                    color: 'white',
-                                    '&:hover': {
-                                        backgroundColor: 'rgba(0,0,0,0.7)',
-                                    },
-                                }}
-                            >
-                                <CloseIcon sx={{ fontSize: 16 }} />
-                            </IconButton>}
-
-                            {addBoard && img.id !== ADD_BUTTON_ID && (
-                                <Checkbox
-                                    checked={selectedIds.includes(img.id)}
-                                    onChange={() => handleSelect(img.id)}
-                                    sx={{
-                                        position: 'absolute',
-                                        top: 8,
-                                        right: 8,
-                                        zIndex: 1,
-                                        padding: '4px',
-                                        backgroundColor: 'rgba(0,0,0,0.5)',
-                                        borderRadius: '50%',
-                                        '&:hover': {
-                                            backgroundColor: 'rgba(0,0,0,0.7)',
-                                        },
-                                        '& .MuiSvgIcon-root': {
-                                            fontSize: 20,
-                                            color: 'white',
-                                        },
-                                    }}
-                                />
-                            )}
-
-                            {/* 이미지 출력, loading lazy로 화면에 보이는 것 부터 요청 */}
-                            <img
-                                loading="lazy"
-                                src={img.src}
-                                alt=""
-                                style={{
-                                    width: "100%",
-                                    display: "block",
-                                    borderRadius: 12,
-                                }}
-                            />
-                        </Box>
-                    ))}
-                </Masonry>
+              <CardActions>
+                <Button onClick={onClickMake} fullWidth startIcon={<EventNoteIcon />}>
+                  나만의 비전보드 만들기
+                </Button>
+              </CardActions>
             </Box>
-        </Card>
-    );
+            )}
+
+          {displayImages.length > 0 && <Masonry columns={4} spacing={2}>
+            {displayImages.map((img) => (
+              <Box
+                key={img.id}
+                sx={{
+                  position: 'relative',
+                  overflow: "hidden",
+                  borderRadius: 1.5,
+                }}
+              >
+                {!addBoard && editBoard && img.id !== ADD_BUTTON_ID && <IconButton
+                  onClick={() => handleDelete(img.id)}
+                  size="small"
+                  sx={{
+                    padding: '4px', position: 'absolute', top: 8, right: 8, zIndex: 1, backgroundColor: 'rgba(0,0,0,0.5)', color: 'white',
+                    '&:hover': { backgroundColor: 'rgba(0,0,0,0.7)', },
+                  }}
+                >
+                  <CloseIcon sx={{ fontSize: 16 }} />
+                </IconButton>}
+
+                {!addBoard && editBoard && img.id === ADD_BUTTON_ID && <IconButton
+                  onClick={handleAddOpen}
+                  sx={{
+                    position: 'absolute', top: 50, right: 50, zIndex: 1, backgroundColor: 'rgba(0,0,0,0.5)', color: 'white',
+                    '&:hover': { backgroundColor: 'rgba(0,0,0,0.7)', },
+                  }}
+                >
+                  <CloseIcon sx={{ fontSize: 16 }} />
+                </IconButton>}
+
+                {addBoard && img.id !== ADD_BUTTON_ID && (
+                  <Checkbox
+                    checked={selectedIds.includes(img.id)}
+                    onChange={() => handleSelect(img.id)}
+                    sx={{
+                      position: 'absolute', top: 8, left: 8, zIndex: 1, padding: '4px', backgroundColor: 'rgba(0,0,0,0.5)', borderRadius: '15%',
+                      '&:hover': { backgroundColor: 'rgba(0,0,0,0.7)', },
+                      '& .MuiSvgIcon-root': { fontSize: 20, color: 'white', },
+                    }}
+                  />
+                )}
+
+                {/* 이미지 출력, loading lazy로 화면에 보이는 것 부터 요청 */}
+                <img
+                  loading="lazy" src={img.src} alt=""
+                  style={{ width: "100%", display: "block", borderRadius: 12, }}
+                />
+              </Box>
+            ))}
+          </Masonry>}
+        </Box>
+      </Card>
+    </div>
+  );
 }

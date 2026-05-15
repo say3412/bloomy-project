@@ -1,5 +1,5 @@
 export type WiseSay = {
-    author: string;
-    authorProfile: string;
-    message: string;
+  author: string;
+  authorProfile: string;
+  message: string;
 }
