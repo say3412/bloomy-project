@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import HabbitListContext from "@/contexts/habbit-list-context";
 
-export default function useTodoListContext() {
+export default function useHabbitListContext() {
   const context = useContext(HabbitListContext);
 
   if (!context) {
