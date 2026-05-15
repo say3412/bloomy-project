@@ -8,6 +8,6 @@ export default async function fetchData(url: string) {
         return await response.json();
 
     } catch (e) {
-        throw new Error('etch Error: ' + e);
+        throw new Error('fetch Error: ' + e);
     }
 }

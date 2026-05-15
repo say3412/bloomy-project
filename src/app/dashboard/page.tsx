@@ -36,7 +36,6 @@ export default function Page() {
 
   const url = ENV.WISE_SAY_URL;
   useEffect(() => {
-
     const fetchWiseSay = async () => {
       setVisible(false);
       setTimeout(async () => {
