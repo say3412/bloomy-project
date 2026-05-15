@@ -16,15 +16,15 @@ import { ArrowRightIcon } from '@phosphor-icons/react/dist/ssr/ArrowRight';
 import { DotsThreeVerticalIcon } from '@phosphor-icons/react/dist/ssr/DotsThreeVertical';
 import dayjs from 'dayjs';
 
-export interface Product {
+export interface VisionListStatus {
   id: string;
   content: string;
   updatedAt: Date;
   status: 'processing' | 'achieved' | 'removed';
 }
 
-export interface LatestProductsProps {
-  products?: Product[];
+export interface VisionListStatusProps {
+  visions?: VisionListStatus[];
   sx?: SxProps;
 }
 
@@ -52,7 +52,7 @@ const statusMap = {
   },
 } as const;
 
-export function Vision({ products = [], sx }: LatestProductsProps): React.JSX.Element {
+export function VisionList({ visions = [], sx }: VisionListStatusProps): React.JSX.Element {
   const vision = []
   return (
 
@@ -76,26 +76,20 @@ export function Vision({ products = [], sx }: LatestProductsProps): React.JSX.El
         }} />
       <Divider />
       <List>
-        {/*             {orders.map((order) => {
-              const { label, sx: chipSx } = statusMap[order.status] ?? {
-                label: 'Unknown',
-                sx: { backgroundColor: 'var(--mui-palette-neutral-200)', color: 'var(--mui-palette-text-primary)' },
-              }; */}
-
-        {products.map((product, index) => {
+        {visions.map((vision, index) => {
           return (
 
-            <ListItem divider={index < products.length - 1} key={product.id}>
+            <ListItem divider={index < visions.length - 1} key={vision.id}>
               <ListItemText
-                primary={product.content}
+                primary={vision.content}
                 primaryTypographyProps={{ variant: 'subtitle1' }}
-                secondary={`Updated ${dayjs(product.updatedAt).format('MMM D, YYYY')}`}
+                secondary={`Updated ${dayjs(vision.updatedAt).format('MMM D, YYYY')}`}
                 secondaryTypographyProps={{ variant: 'body2' }}
               />
               <Chip
-                label={product.status}
+                label={vision.status}
                 size="small"
-                sx={statusMap[product.status].sx}
+                sx={statusMap[vision.status].sx}
                 variant="filled"
               />
               <IconButton edge="end">

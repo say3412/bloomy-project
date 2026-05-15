@@ -10,8 +10,9 @@ import CardActions from '@mui/material/CardActions';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 
 import { config } from '@/config';
-import { Vision } from '@/components/dashboard/vision/vision';
+import { VisionList } from '@/components/dashboard/vision/vision-list';
 import { VisionBoard } from '@/components/dashboard/vision/visionboard';
+import { type VisionBoardImage } from '@/types/visionboard-image';
 
 export const metadata = { title: `Settings | Dashboard | ${config.site.name}` } satisfies Metadata;
 
@@ -22,22 +23,12 @@ export default function Page(): React.JSX.Element {
         <Stack spacing={1} sx={{ flex: '1 1 auto' }}>
           <Typography variant="h4">Vision</Typography>
         </Stack>
-        <Stack direction="row" spacing={1}>
-          <CardActions>
-            <Button fullWidth startIcon={<EventNoteIcon />}>
-              나만의 비전보드 만들기
-            </Button>
-          </CardActions>
-          <Button color="inherit" startIcon={<DownloadIcon fontSize="var(--icon-fontSize-md)" />}>
-            Export
-          </Button>
-        </Stack>
       </Stack>
       <VisionBoard />
       <Stack>
         <Grid size={12}>
-          <Vision
-            products={[
+          <VisionList
+            visions={[
               {
                 id: 'VL-005',
                 content: '나는 매일 아침 6시에 일어나 규칙적인 생활 습관을 완성했다.',
