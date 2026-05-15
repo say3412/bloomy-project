@@ -11,7 +11,6 @@ type VisionboardImageContextType = {
   handleEditClick: () => void;
   handleAddOpen: () => void;
   handleAddClose: () => void;
-  clearSelectIds: () => void;
   handleAddSave: (selectedImages: VisionBoardImage[]) => void;
   handleDelete: (id: number) => void;
   handleSelectIds: (ids: number) => void;

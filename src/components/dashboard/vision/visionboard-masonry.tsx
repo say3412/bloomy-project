@@ -13,12 +13,12 @@ import { ADD_BUTTON_ID } from '@/config'
 import useVisionboardImageContext from '@/hooks/useVisionboardImageContext';
 import Alert from '@mui/material/Alert';
 
-
-interface VBMasonryProps {
+interface VisionBoardMasonryProps {
   images: VisionBoardImage[];
+  readOnly?: boolean; // 체크박스 표시 여부를 결정하는 flag
 }
 
-export default function VisionBoardMasonry({ images }: VBMasonryProps) {
+export default function VisionBoardMasonry({ images, readOnly = true }: VisionBoardMasonryProps) {
   const { openAlert, selectedIds, addBoard, editBoard, handleDelete, handleAddOpen, handleSelectIds, handleAlert } = useVisionboardImageContext();
 
   const handleSelect = (id: number) => {
@@ -102,7 +102,7 @@ export default function VisionBoardMasonry({ images }: VBMasonryProps) {
                   <CloseIcon sx={{ fontSize: 16 }} />
                 </IconButton>}
 
-                {addBoard && img.id !== ADD_BUTTON_ID && (
+                {!readOnly && img.id !== ADD_BUTTON_ID && (
                   <Checkbox
                     checked={selectedIds.includes(img.id)}
                     onChange={() => handleSelect(img.id)}

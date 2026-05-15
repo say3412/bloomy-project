@@ -1,9 +1,22 @@
 import { VisionBoardImage } from "@/types/visionboard-image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import v_images from '@/mock/image.json';
 
 export default function useVisionboardImage() {
-  const [images, setImages] = useState<VisionBoardImage[]>([]); // v_images: 개발 이후에 []로 수정
+  // 1. 초기값 로드: 로컬스토리지에 데이터가 있으면 가져오고, 없으면 빈 배열
+  const [images, setImages] = useState<VisionBoardImage[]>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem("images");
+      return saved ? JSON.parse(saved) : [];
+    }
+    return [];
+  });
+
+  // 2. 동기화: contents 상태가 변할 때마다 자동으로 로컬스토리지 업데이트
+  useEffect(() => {
+    localStorage.setItem("images", JSON.stringify(images));
+  }, [images]);
+
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [openAlert, setOpenAlert] = useState(false);
   const [editBoard, setEditBoard] = useState<boolean>(false);
@@ -20,17 +33,15 @@ export default function useVisionboardImage() {
 
   // 레이어팝업 오픈
   const handleAddOpen = () => {
+    setSelectedIds([]);
     setAddBoard(true);
   }
 
   // 레이어팝업 닫음
   const handleAddClose = () => {
     setAddBoard(false);
-  };
-
-  const clearSelectIds = () => {
     setSelectedIds([]);
-  }
+  };
 
   const handleSelectIds = (id: number) => {
     const imageIdSet = new Set(images.map((img) => img.id));
@@ -65,5 +76,5 @@ export default function useVisionboardImage() {
     // localStorage.setItem("images", JSON.stringify(images));
   }
 
-  return { images, selectedIds, editBoard, addBoard, openAlert, handleAlert, handleEditClick, handleAddOpen, handleAddClose, clearSelectIds, handleSelectIds, handleAddSave, handleDelete };
+  return { images, selectedIds, editBoard, addBoard, openAlert, handleAlert, handleEditClick, handleAddOpen, handleAddClose, handleSelectIds, handleAddSave, handleDelete };
 }
