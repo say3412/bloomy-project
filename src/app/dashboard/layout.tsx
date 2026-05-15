@@ -9,6 +9,10 @@ import { MainNav } from '@/components/dashboard/layout/main-nav';
 import { SideNav } from '@/components/dashboard/layout/side-nav';
 import VisionboardImageContext from '@/contexts/visionboard-image-context';
 import useVisionboardImage from '@/hooks/useVisionboardImage';
+import TodoListContext from '@/contexts/todo-list-context';
+import useTodoList from '@/hooks/useTodoList';
+import HabbitListContext from '@/contexts/habbit-list-context';
+import useHabbitList from '@/hooks/useHabbitList';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -16,6 +20,8 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps): React.JSX.Element {
   const visionboardImage = useVisionboardImage();
+  const TodoList = useTodoList();
+  const HabbitList = useHabbitList();
 
   return (
     <AuthGuard>
@@ -46,7 +52,11 @@ export default function Layout({ children }: LayoutProps): React.JSX.Element {
           <main>
             <Container maxWidth="xl" sx={{ py: '64px' }}>
               <VisionboardImageContext.Provider value={visionboardImage}>
+                <TodoListContext.Provider value={TodoList}>
+                <HabbitListContext.Provider value={HabbitList}>
                 {children}
+                </HabbitListContext.Provider>
+                </TodoListContext.Provider>
               </VisionboardImageContext.Provider>
             </Container>
           </main>

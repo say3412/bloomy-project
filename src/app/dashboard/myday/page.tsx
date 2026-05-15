@@ -8,8 +8,6 @@ import dayjs from 'dayjs';
 import { config } from '@/config';
 import { Todos } from '@/components/dashboard/myday/todos';
 import { Habbits } from '@/components/dashboard/myday/habbits';
-import { Vision } from '@/components/dashboard/vision/vision-list';
-
 
 export const metadata = { title: `Settings | Dashboard | ${config.site.name}` } satisfies Metadata;
 
