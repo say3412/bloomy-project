@@ -1,0 +1,172 @@
+/* mini-calendar.css */
+
+/* 1. 기본 구조 & 여백 정리 */
+.bloomy-calendar-container {
+  padding: 0px 10px !important;
+}
+
+.react-calendar {
+  width: 100% !important;
+  border: none !important;
+  background-color: transparent !important;
+  font-family: inherit !important;
+}
+
+/* 2. 네비게이션 헤더 */
+.react-calendar__navigation {
+  display: flex;
+  margin-bottom: 8px !important;
+  background: none !important;
+}
+
+.react-calendar__navigation button {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  min-width: 36px !important;
+}
+
+.react-calendar__navigation__arrow {
+  font-size: 1.5rem !important;
+  color: #313749 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.react-calendar__navigation__arrow:hover {
+  background-color: #faf5fc !important;
+}
+
+.react-calendar__navigation__label {
+  flex-grow: 1 !important;
+  font-weight: 800 !important;
+  font-size: 1.1rem !important;
+  color: #19191B !important;
+  cursor: default !important;
+}
+
+.react-calendar__navigation__label:hover {
+  background: none !important;
+}
+
+/* 3. 요일 헤더 */
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: #8E8E93 !important;
+  padding-bottom: 15px;
+}
+
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none !important;
+}
+
+/* 4. 날짜 타일 기본 기하 구조 */
+.react-calendar__tile {
+  position: relative !important;
+  height: 48px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  padding-top: 6px !important;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #494F66;
+  background: none;
+  border: none;
+}
+
+/* 오늘 날짜 하이라이트 */
+.react-calendar__tile--now {
+  background: none !important;
+}
+
+.react-calendar__tile--now abbr {
+  background-color: #E47BA6;
+  color: #ffffff !important;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+/* 마우스 호버 효과 */
+.react-calendar__tile:enabled:hover {
+  background-color: #f1f1f4 !important;
+  border-radius: 12px;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: #d1d1d6 !important;
+}
+
+/* -------------------------------------------------------------
+   🔮 [일정 모드 전용] 하단 점(Dot) 스타일
+------------------------------------------------------------- */
+.dot-wrapper {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+/* 일정 완료 닷: 세련된 Bloomy 보라 계열 */
+.todo-done-dot {
+  background-color: #B189BE;
+  box-shadow: 0 0 4px rgba(177, 137, 190, 0.4);
+}
+
+/* -------------------------------------------------------------
+   🔮 [습관 모드 전용] 3층 멀티 라인 스트릭 스타일
+------------------------------------------------------------- */
+.react-calendar__tile[class*="habit-"]::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0;
+  right: 0;
+  height: 3.5px;
+  z-index: 1;
+}
+
+/* [레일 0] 첫 번째 습관 선 (바닥에서 4px 높이) - 핑크 */
+.react-calendar__tile[class*="habit-0-"]::after { bottom: 4px; }
+.react-calendar__tile.habit-0-start::after { border-radius: 4px 0 0 4px; left: 4px; background-color: #E47BA6; }
+.react-calendar__tile.habit-0-end::after { border-radius: 0 4px 4px 0; right: 4px; background-color: #E47BA6; }
+.react-calendar__tile.habit-0-single::after { border-radius: 4px; left: 4px; right: 4px; background-color: #E47BA6; }
+.react-calendar__tile.habit-0-middle::after { background-color: #E47BA6; }
+
+/* [레일 1] 두 번째 습관 선 (바닥에서 9px 높이) - 보라 */
+.react-calendar__tile[class*="habit-1-"]::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0;
+  right: 0;
+  height: 3.5px;
+  bottom: 9px;
+  z-index: 1;
+}
+.react-calendar__tile.habit-1-start::before { border-radius: 4px 0 0 4px; left: 4px; background-color: #D8B4E2; }
+.react-calendar__tile.habit-1-end::before { border-radius: 0 4px 4px 0; right: 4px; background-color: #D8B4E2; }
+.react-calendar__tile.habit-1-single::before { border-radius: 4px; left: 4px; right: 4px; background-color: #D8B4E2; }
+.react-calendar__tile.habit-1-middle::before { background-color: #D8B4E2; }
+
+/* [레일 2] 세 번째 습관 선 (바닥에서 14px 높이) - 민트 테두리 트릭 */
+.react-calendar__tile.habit-2-start { box-shadow: inset 4px -14px 0 -11px #A2E3C4 !important; }
+.react-calendar__tile.habit-2-middle { box-shadow: inset 0 -14px 0 -11px #A2E3C4 !important; }
+.react-calendar__tile.habit-2-end { box-shadow: inset -4px -14px 0 -11px #A2E3C4 !important; }
+.react-calendar__tile.habit-2-single { box-shadow: inset 4px -14px 4px -11px #A2E3C4 !important; border-radius: 4px; }

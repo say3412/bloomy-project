@@ -122,6 +122,7 @@ export default function VisionBoardMasonry({ images, readOnly = true }: VisionBo
               onClick={handleAddOpen}
               sx={{
                 width: '100%',
+                maxWidth: '200px',
                 height: '120px',
                 display: 'flex',
                 alignItems: 'center',

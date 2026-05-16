@@ -1,4 +1,4 @@
-import VisionboardImageContext from "@/contexts/visionboard-image-context";
+import VisionboardImageContext from "@/contexts/visionboardImageContext";
 import { useContext } from "react";
 
 export default function useVisionboardImageContext() {

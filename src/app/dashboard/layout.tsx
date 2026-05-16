@@ -7,12 +7,12 @@ import GlobalStyles from '@mui/material/GlobalStyles';
 import { AuthGuard } from '@/components/auth/auth-guard';
 import { MainNav } from '@/components/dashboard/layout/main-nav';
 import { SideNav } from '@/components/dashboard/layout/side-nav';
-import VisionboardImageContext from '@/contexts/visionboard-image-context';
+import VisionboardImageContext from '@/contexts/visionboardImageContext';
 import useVisionboardImage from '@/hooks/useVisionboardImage';
-import TodoListContext from '@/contexts/todo-list-context';
+import TodoListContext from '@/contexts/todoListContext';
 import useTodoList from '@/hooks/useTodoList';
-import HabbitListContext from '@/contexts/habbit-list-context';
-import useHabbitList from '@/hooks/useHabbitList';
+import HabitListContext from '@/contexts/habitListContext';
+import useHabitList from '@/hooks/useHabitList';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -21,7 +21,7 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps): React.JSX.Element {
   const visionboardImage = useVisionboardImage();
   const TodoList = useTodoList();
-  const HabbitList = useHabbitList();
+  const HabitList = useHabitList();
 
   return (
     <AuthGuard>
@@ -53,9 +53,9 @@ export default function Layout({ children }: LayoutProps): React.JSX.Element {
             <Container maxWidth="xl" sx={{ py: '64px' }}>
               <VisionboardImageContext.Provider value={visionboardImage}>
                 <TodoListContext.Provider value={TodoList}>
-                <HabbitListContext.Provider value={HabbitList}>
+                <HabitListContext.Provider value={HabitList}>
                 {children}
-                </HabbitListContext.Provider>
+                </HabitListContext.Provider>
                 </TodoListContext.Provider>
               </VisionboardImageContext.Provider>
             </Container>

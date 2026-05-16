@@ -3,7 +3,7 @@ import { ChangeEvent, useState } from 'react';
 import { Stack, Dialog, DialogActions, DialogContent, InputAdornment, OutlinedInput, IconButton, Tooltip } from '@mui/material';
 import { SaveAs as SaveIcon, Close as CloseIcon } from '@mui/icons-material';
 import { MagnifyingGlassIcon } from '@phosphor-icons/react/dist/ssr/MagnifyingGlass';
-import VisionBoardMasonry from './visionboard-masonry';
+import VisionBoardMasonry from './visionboardMasonry';
 import { ImageMeta, ImagePixa } from '@/types/image-pixa';
 import useVisionboardImageContext from '@/hooks/useVisionboardImageContext';
 import ENV from '@/env';

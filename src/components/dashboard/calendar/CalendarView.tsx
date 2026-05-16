@@ -1,24 +1,25 @@
 'use client'
 import dayjs from 'dayjs';
-import styles from '@/components/dashboard/calendar/calendar.module.css'
 
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import useHabbitListContext from '@/hooks/useHabbitListContext';
+import useHabbitListContext from '@/hooks/useHabitListContext';
 import useTodoListContext from '@/hooks/useTodoListContext';
 
-export default function CalendarPage() {
+export default function CalendarView() {
   const { contents: habbits } = useHabbitListContext();
   const { contents: todos } = useTodoListContext();
 
-  // 완료된 habit만 날짜별로 개수 집계
+  // 완료된 habit을 doneDates 배열 기반으로 날짜별 개수 집계
   const groupedHabbit = habbits.reduce((acc, habbit) => {
-    if (!habbit.done) {
-      return acc;
+    // doneDates 배열이 존재할 때만 루프를 돕니다.
+    if (habbit.doneDates && Array.isArray(habbit.doneDates)) {
+      habbit.doneDates.forEach((dateStr: string) => {
+        // 날짜 포맷 규격화 (안전장치)
+        const formattedDate = dayjs(dateStr).format('YYYY-MM-DD');
+        acc[formattedDate] = (acc[formattedDate] || 0) + 1;
+      });
     }
-
-    const date = dayjs(habbit.createdAt).format('YYYY-MM-DD');
-    acc[date] = (acc[date] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
 
@@ -27,12 +28,11 @@ export default function CalendarPage() {
     date,
   }));
 
-  // 완료된 todos만 날짜별로 개수 집계
+  // 완료된 todos만 날짜별로 개수 집계 (기존 유지)
   const groupedTodo = todos.reduce((acc, todo) => {
     if (!todo.done) {
       return acc;
     }
-
     const date = dayjs(todo.createdAt).format('YYYY-MM-DD');
     acc[date] = (acc[date] || 0) + 1;
     return acc;
@@ -68,15 +68,14 @@ export default function CalendarPage() {
       eventContent={(eventInfo) => {
         const isHabbit = eventInfo.event.extendedProps.type === 'habbit';
 
-        // 새 팔레트 적용: Primary(Habbit) & Secondary(Todo)
         const themeColor = isHabbit ? {
-          bg: 'rgba(228, 123, 166, 0.12)', // primary.main의 투명 버전
-          text: '#E47BA6',                 // primary.main
+          bg: 'rgba(228, 123, 166, 0.12)',
+          text: '#E47BA6',
           border: '#E47BA6'
         } : {
-          bg: 'rgba(216, 180, 226, 0.15)', // secondary.main의 투명 버전
-          text: '#B189BE',                 // secondary.dark (가독성을 위해 한 톤 낮춤)
-          border: '#D8B4E2'                // secondary.main
+          bg: 'rgba(216, 180, 226, 0.15)',
+          text: '#B189BE',
+          border: '#D8B4E2'
         };
 
         return (
@@ -84,8 +83,8 @@ export default function CalendarPage() {
             display: 'flex',
             alignItems: 'center',
             gap: '6px',
-            padding: '3px 8px',
-            margin: '1px 2px',
+            padding: '0px 8px',
+            margin: '0px 2px',
             borderRadius: '6px',
             backgroundColor: themeColor.bg,
             borderLeft: `3px solid ${themeColor.border}`,
@@ -102,7 +101,7 @@ export default function CalendarPage() {
             <span style={{
               fontSize: '0.75rem',
               fontWeight: '600',
-              color: '#313749', // 팔레트의 text.primary
+              color: '#313749',
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis'

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import mocktodos from '@/mock/todo.json'
-import { type ContentItem } from '@/types/daytype';
+import { type TodoContent } from '@/types/daytype';
 
 export default function useTodoList() {
   // 1. 초기값 로드: 로컬스토리지에 데이터가 있으면 가져오고, 없으면 빈 배열
-  const [contents, setContents] = useState<ContentItem[]>(() => {
+  const [contents, setContents] = useState<TodoContent[]>(() => {
     if (typeof window !== 'undefined') { // Next.js 환경 대응
       const saved = localStorage.getItem("todos");
       return saved ? JSON.parse(saved) : [];
@@ -19,7 +19,7 @@ export default function useTodoList() {
 
   // 추가
   const addTodo = (text: string) => {
-    const newTodo: ContentItem = {
+    const newTodo: TodoContent = {
       id: crypto.randomUUID(),
       content: text,
       done: false,
